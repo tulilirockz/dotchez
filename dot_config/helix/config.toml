@@ -1,5 +1,34 @@
-theme = "boo_berry"
+theme = "github_dark_high_contrast"
 
 [editor]
+bufferline = "always"
+cursorline = true
 line-number = "relative"
+rulers = [120]
+true-color = true
 mouse = false
+color-modes = true
+popup-border = "all"
+auto-pairs = false
+auto-format = true
+
+[editor.indent-guides]
+character = "╎"
+render = true
+
+[editor.lsp]
+auto-signature-help = false
+display-messages = true
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control", "file-name"]
+
+[keys.normal]
+"A-," = "goto_previous_buffer"
+"A-." = "goto_next_buffer"
+"A-w" = ":buffer-close"
+"A-/" = "repeat_last_motion"
+
+[keys.select]
+C-x = "extend_to_line_bounds"
+X = ["extend_line_up", "extend_to_line_bounds"]

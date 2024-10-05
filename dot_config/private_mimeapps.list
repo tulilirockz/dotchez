@@ -10,6 +10,7 @@ audio/vnd.wave=org.gnome.Decibels.desktop
 x-scheme-handler/mailto=chromium.desktop
 image/jpeg=org.gnome.Loupe.desktop
 image/jxl=org.gnome.Loupe.desktop
+image/webp=org.gnome.Loupe.desktop
 
 [Added Associations]
 x-scheme-handler/http=org.gnome.Epiphany.desktop;
@@ -23,3 +24,4 @@ audio/vnd.wave=org.gnome.Decibels.desktop;
 x-scheme-handler/mailto=userapp-Evolution-SCK2T2.desktop;
 image/jpeg=org.gnome.Loupe.desktop;
 image/jxl=org.gnome.Loupe.desktop;
+image/webp=org.gnome.Loupe.desktop;

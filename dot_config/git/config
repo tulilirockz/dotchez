@@ -4,3 +4,31 @@
 	signingkey = /home/tulili/.ssh/cberg.pub
 [gpg]
 	format = ssh
+[push]
+	autoSetupRemote = true
+[alias]
+	lazy = !lazygit
+	cports = !cat ~/cports.txt
+	cports-fetch = !/usr/bin/fetch -1 -a -q -o /home/tulili/cports.txt https://repo.chimera-linux.org/cports-updates/cports-updates.txt
+	cportsf = !/usr/bin/fetch -1 -a -q -o - https://repo.chimera-linux.org/cports-updates/cports-updates.txt
+	todo = !cat ~/opt/todo-cports.txt
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[rerere]
+	enable = true
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = main
+[maintenance]
+	repo = /home/tulili/opt/tulilirockz/cports
+[fetch]
+	writeCommitGraph = true
+[credential]
+	helper = /usr/libexec/git-core/git-credential-libsecret
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
