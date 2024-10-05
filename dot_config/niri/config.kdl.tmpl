@@ -90,8 +90,11 @@ screenshot-path "~/Pictures/Screenshots/Screenshot_%Y-%m-%d %H-%M-%S.png"
 binds {
     Mod+Z { spawn "swaync-client" "--toggle-panel"; }
     Mod+Q { spawn "footclient"; }
+{{ if eq .chezmoi.os "freebsd" }}
+    Mod+F { spawn "chrome" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland"; }
+{{ else if eq .chezmoi.os "linux" }}
     Mod+F { spawn "chromium" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland"; }
-    // Mod+F { spawn "epiphany"; }
+{{ end }}
     Mod+R { spawn "fuzzel"; }
     Mod+D { spawn "gnome-clocks"; }
     Mod+E { spawn "nautilus"; }
