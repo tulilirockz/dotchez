@@ -1,6 +1,0 @@
-XDG_RUNTIME_DIR="/run/user/1000"
-XDG_CACHE_HOME=$HOME/.cache
-XDG_STATE_HOME=$HOME/.local/state
-XDG_CONFIG_HOME=$HOME/.config
-XDG_DATA_HOME=$HOME/.local/share
-SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/keyring/ssh
