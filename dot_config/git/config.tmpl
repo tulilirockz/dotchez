@@ -23,11 +23,13 @@
 [init]
 	defaultBranch = main
 [maintenance]
-	repo = /home/tulili/opt/tulilirockz/cports
+	repo = /home/tulili/opt/{{ if eq .chezmoi.os "linux" }}c{{ end }}ports
 [fetch]
 	writeCommitGraph = true
 [credential]
-	helper = /usr/libexec/git-core/git-credential-libsecret
+{{ if eq .chezmoi.os "linux" }}
+	helper = /usr{{ if eq .chezmoi.os "freebsd"}}/local{{ end }}/libexec/git-core/git-credential-libsecret
+{{ end }}
 [merge]
     conflictstyle = diff3
 [diff]
