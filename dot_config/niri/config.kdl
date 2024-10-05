@@ -1,0 +1,140 @@
+spawn-at-startup "swaync"
+spawn-at-startup "kdeconnectd"
+spawn-at-startup "wpaperd"
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "gnome-keyring-daemon"
+spawn-at-startup "easyeffects" "--gapplication-service"
+spawn-at-startup "/usr/libexec/xdg-desktop-portal-gnome"
+
+environment {
+    SSH_AUTH_SOCK "/run/user/1000/keyring/ssh"
+    DISPLAY ":0"
+    QT_QPA_PLATFORM "wayland"
+    SDL_PLATFORM "wayland"
+    EDITOR "hx"
+    CCACHE_DIR "/home/tulili/.cache/ccache"
+    SCCACHE_DIR "/home/tulili/.cache/sccache"
+}
+
+cursor {
+    xcursor-theme "Adwaita"
+    xcursor-size 12
+}
+
+window-rule {
+    geometry-corner-radius 6
+    clip-to-geometry true
+}
+
+input {
+    keyboard {
+        xkb {
+            layout "us,br"
+            options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+        }
+        repeat-delay 250
+        repeat-rate 75
+        track-layout "global"
+    }
+    mouse {
+        accel-speed 0.2
+        accel-profile "flat"
+    }
+    tablet {
+        map-to-output "HDMI-A-1"
+    }
+}
+
+output "HDMI-A-1" {
+    transform "normal"
+    mode "1920x1080"
+}
+
+layout {
+    focus-ring {
+        off
+    }
+    default-column-width { proportion 0.5; }
+    gaps 5
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot_%Y-%m-%d %H-%M-%S.png"
+
+binds {
+    Mod+Z { spawn "swaync-client" "--toggle-panel"; }
+    Mod+Q { spawn "foot"; }
+    Mod+F { spawn "epiphany"; }
+    Mod+R { spawn "fuzzel"; }
+    Mod+D { spawn "gnome-clocks"; }
+    Mod+E { spawn "nautilus"; }
+
+    XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
+    XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+    XF86AudioMute { spawn "wpctl" "set-mute" "@DEFAULT_SINK@" "toggle"; }
+    XF86AudioMicMute { spawn "wpctl" "set-source-mute" "@DEFAULT_SOURCE@" "toggle"; }
+    XF86AudioPlay { spawn "playerctl" "play-pause"; }
+    XF86AudioNext { spawn "playerctl" "next"; }
+    XF86AudioPrev { spawn "playerctl" "previous"; }
+    XF86Search { spawn "fuzzel"; }
+    XF86Music { spawn "g4music"; }
+
+    XF86HomePage { show-hotkey-overlay ; }
+    XF86VendorHome { show-hotkey-overlay ; }
+    XF86OfficeHome { show-hotkey-overlay ; }
+    Mod+Shift+H { show-hotkey-overlay; }
+    Mod+C { close-window; }
+    Mod+T { switch-preset-column-width; }
+    Mod+V { maximize-column; }
+    Mod+X { fullscreen-window; }
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+    Mod+Shift+E { quit; }
+    Mod+Shift+P { power-off-monitors; }
+
+    Mod+Left  { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Up    { focus-window-or-workspace-up; }
+    Mod+Down  { focus-window-or-workspace-down; }
+    Mod+H     { focus-column-left; }
+    Mod+L     { focus-column-right; }
+    Mod+J     { focus-window-or-workspace-down; }
+    Mod+K     { focus-window-or-workspace-up; }
+
+    Mod+Ctrl+Left  { move-column-left; }
+    Mod+Ctrl+Down  { move-window-to-workspace-down; }
+    Mod+Ctrl+Up    { move-window-to-workspace-up; }
+    Mod+Ctrl+Right { move-column-right; }
+    Mod+Ctrl+H     { move-column-left; }
+    Mod+Ctrl+J     { move-window-to-workspace-down; }
+    Mod+Ctrl+K     { move-window-to-workspace-up; }
+    Mod+Ctrl+L     { move-column-right; }
+
+    Mod+1      { focus-workspace 1; }
+    Mod+2      { focus-workspace 2; }
+    Mod+3      { focus-workspace 3; }
+    Mod+4      { focus-workspace 4; }
+    Mod+5      { focus-workspace 5; }
+    Mod+6      { focus-workspace 6; }
+    Mod+7      { focus-workspace 7; }
+    Mod+8      { focus-workspace 8; }
+    Mod+9      { focus-workspace 9; }
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+        
+    Mod+Comma  { consume-window-into-column; }
+    Mod+Period { expel-window-from-column; }
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+}

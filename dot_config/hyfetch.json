@@ -1,0 +1,21 @@
+{
+    "preset": "transfeminine",
+    "mode": "rgb",
+    "light_dark": "dark",
+    "lightness": 0.8,
+    "color_align": {
+        "mode": "custom",
+        "custom_colors": {
+            "3": 2,
+            "1": 1,
+            "2": 3,
+            "4": 0
+        },
+        "fore_back": []
+    },
+    "backend": "neofetch",
+    "args": null,
+    "distro": null,
+    "pride_month_shown": [],
+    "pride_month_disable": false
+}

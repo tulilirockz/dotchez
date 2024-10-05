@@ -1,0 +1,5 @@
+XDG_RUNTIME_DIR="/run/user/1000"
+SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
+EDITOR="hx"
+BROWSER="epiphany"
+EMAIL="tulilirockz@outlook.com"

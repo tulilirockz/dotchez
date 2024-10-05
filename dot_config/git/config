@@ -1,0 +1,6 @@
+[user]
+	email = tulilirockz@outlook.com
+	name = Tulip Blossom
+	signingkey = /home/tulili/.ssh/cberg.pub
+[gpg]
+	format = ssh
