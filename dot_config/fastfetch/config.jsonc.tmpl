@@ -24,7 +24,7 @@
         },
         {
             "type": "kernel",
-            "key": " ",
+            "key": {{ if eq .chezmoi.os "freebsd"}} " 󰣠" {{ else if eq .chezmoi.os "linux" }} " " {{ end }},
             "format": "{1} {2}"
         },
         {

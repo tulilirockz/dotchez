@@ -894,7 +894,11 @@ $env.config = {
 # atuin init nu | save -f ~/.local/share/atuin/init.nu #make sure you created the directory beforehand with `mkdir ~/.local/share/atuin/init.nu`
 source ~/.config/nushell/atuin.nu
 source ~/.config/nushell/zoxide.nu
+{{ if eq .chezmoi.os "freebsd" }}
+source ~/.config/nushell/starship_bsd.nu
+{{ else if eq .chezmoi.os "linux" }}
 source ~/.config/nushell/starship.nu
+{{ end }}
 
 #bind to ctrl-r in emacs, vi_normal and vi_insert modes, add any other bindings you want here too
 $env.config = (
