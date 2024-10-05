@@ -1,18 +1,19 @@
 {{ if eq .chezmoi.os "freebsd" }}
 spawn-at-startup "/usr/local/libexec/xdg-desktop-portal-gnome"
-spawn-at-startup "swaybg" "-i" "/home/tulili/.background.png"
+spawn-at-startup "swaybg" "-m" "fill" "-i" "/home/tulili/.config/swaybg/bsd.png"
+spawn-at-startup "pipewire"
 {{ else if eq .chezmoi.os "linux" }}
 spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
 spawn-at-startup "/usr/libexec/xdg-desktop-portal-gnome"
-spawn-at-startup "swaync"
 spawn-at-startup "wpaperd"
-spawn-at-startup "xwayland-satellite"
-spawn-at-startup "kdeconnectd"
 spawn-at-startup "easyeffects" "--gapplication-service"
 spawn-at-startup "udiskie" "-a"
 spawn-at-startup "flatpak" "run" "--command=OpenTabletDriver.Daemon" "net.opentabletdriver.OpenTabletDriver"
-spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 {{ end }}
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+spawn-at-startup "swaync"
+spawn-at-startup "kdeconnectd"
+spawn-at-startup "xwayland-satellite"
 spawn-at-startup "gnome-keyring-daemon"
 spawn-at-startup "foot" "--server"
 spawn-at-startup "wlsunset" "-l" "-23.5" "-L" "-46.5"
@@ -24,11 +25,7 @@ environment {
 }
 
 cursor {
-{{ if eq .chezmoi.os "freebsd" }}
-    xcursor-theme "Adwaita"
-{{ else if eq .chezmoi.os "linux" }}
-    xcursor-theme "Bibata-Modern-Ice"
-{{ end }}
+    xcursor-theme {{ if eq .chezmoi.os "freebsd" }} "Adwaita" {{ else if eq .chezmoi.os "linux" }} "Bibata-Modern-Ice" {{ end }}
     xcursor-size 24
 }
 

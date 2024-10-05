@@ -7,11 +7,17 @@ term=xterm-256color
 # app-id=foot # globally set wayland app-id. Default values are "foot" and "footclient" for desktop and server mode
 # title=foot
 # locked-title=no
-
+{{ if eq .chezmoi.os "freebsd" }}
+font=UbuntuMono Nerd Font:size=16
+font-bold=UbuntuMono Nerd Font:size=16
+font-italic=UbuntuMono Nerd Font:size=16
+font-bold-italic=UbuntuMono Nerd Font:size=16
+{{ else if eq .chezmoi.os "linux" }}
 font=MartianMono Nerd Font:size=12
 font-bold=MartianMono Nerd Font:size=12
 font-italic=MartianMono Nerd Font:size=12
 font-bold-italic=MartianMono Nerd Font:size=12
+{{ end }}
 # font-size-adjustment=0.0
 # line-height=<font metrics>
 # letter-spacing=0
