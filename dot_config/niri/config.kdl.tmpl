@@ -1,19 +1,19 @@
 {{ if eq .chezmoi.os "freebsd" }}
 // pipewire needs to be started by LY - please make sure to set that up
 spawn-at-startup "swaybg" "-m" "fill" "-i" "/home/tulili/.local/share/bg.png"
-spawn-at-startup "wireplumber"
+// spawn-at-startup "wireplumber"
 {{ else if eq .chezmoi.os "linux" }}
 spawn-at-startup "wpaperd"
 spawn-at-startup "easyeffects" "--gapplication-service"
 spawn-at-startup "udiskie" "-a"
 spawn-at-startup "flatpak" "run" "--command=OpenTabletDriver.Daemon" "net.opentabletdriver.OpenTabletDriver"
+spawn-at-startup "xwayland-satellite"
 {{ end }}
 spawn-at-startup "/usr{{ if eq .chezmoi.os "freebsd" }}/local{{ end }}/libexec/xdg-desktop-portal-gnome"
 spawn-at-startup "/usr{{ if eq .chezmoi.os "freebsd"}}/local{{ end }}/libexec/polkit-mate-authentication-agent-1"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "swaync"
 spawn-at-startup "kdeconnectd"
-spawn-at-startup "xwayland-satellite"
 spawn-at-startup "gnome-keyring-daemon"
 spawn-at-startup "foot" "--server"
 spawn-at-startup "wlsunset" "-l" "-23.5" "-L" "-46.5"
@@ -23,6 +23,7 @@ environment {
     QT_QPA_PLATFORM "wayland"
     SDL_PLATFORM "wayland"
     MOZ_ENABLE_WAYLAND "1"
+    SSH_AUTH_SOCK {{ if eq .chezmoi.os "freebsd" }}/var/run/xdg/tulili{{ else if .chezmoi.os "linux" }}/run/user/1000{{ end }}/keyring/ssh
 }
 
 cursor {
