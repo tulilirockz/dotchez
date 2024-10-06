@@ -11,7 +11,7 @@
 	cports = !cat ~/cports.txt
 	cports-fetch = !/usr/bin/fetch -1 -a -q -o /home/tulili/cports.txt https://repo.chimera-linux.org/cports-updates/cports-updates.txt
 	cportsf = !/usr/bin/fetch -1 -a -q -o - https://repo.chimera-linux.org/cports-updates/cports-updates.txt
-	todo = !cat ~/opt/todo-cports.txt
+	todo = !cat ~/opt/todo-{{ if eq .chezmoi.os "linux"}}c{{ end }}ports.txt
 [column]
 	ui = auto
 [branch]

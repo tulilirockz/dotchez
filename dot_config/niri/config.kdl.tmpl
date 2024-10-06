@@ -1,15 +1,15 @@
 {{ if eq .chezmoi.os "freebsd" }}
-spawn-at-startup "/usr/local/libexec/xdg-desktop-portal-gnome"
+// pipewire needs to be started by LY - please make sure to set that up
 spawn-at-startup "swaybg" "-m" "fill" "-i" "/home/tulili/.config/swaybg/bsd.png"
-spawn-at-startup "pipewire"
+spawn-at-startup "wireplumber"
 {{ else if eq .chezmoi.os "linux" }}
-spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
-spawn-at-startup "/usr/libexec/xdg-desktop-portal-gnome"
 spawn-at-startup "wpaperd"
 spawn-at-startup "easyeffects" "--gapplication-service"
 spawn-at-startup "udiskie" "-a"
 spawn-at-startup "flatpak" "run" "--command=OpenTabletDriver.Daemon" "net.opentabletdriver.OpenTabletDriver"
 {{ end }}
+spawn-at-startup "/usr{{ if eq .chezmoi.os "freebsd" }}/local{{ end }}/libexec/xdg-desktop-portal-gnome"
+spawn-at-startup "/usr{{ if eq .chezmoi.os "freebsd"}}/local{{ end }}/libexec/polkit-mate-authentication-agent-1"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "swaync"
 spawn-at-startup "kdeconnectd"
@@ -22,10 +22,11 @@ environment {
     DISPLAY ":0"
     QT_QPA_PLATFORM "wayland"
     SDL_PLATFORM "wayland"
+    MOZ_ENABLE_WAYLAND "1"
 }
 
 cursor {
-    xcursor-theme {{ if eq .chezmoi.os "freebsd" }} "Adwaita" {{ else if eq .chezmoi.os "linux" }} "Bibata-Modern-Ice" {{ end }}
+    xcursor-theme {{ if eq .chezmoi.os "freebsd" }}"Adwaita"{{ else if eq .chezmoi.os "linux" }}"Bibata-Modern-Ice"{{ end }}
     xcursor-size 24
 }
 
@@ -87,20 +88,21 @@ screenshot-path "~/Pictures/Screenshots/Screenshot_%Y-%m-%d %H-%M-%S.png"
 binds {
     Mod+Z { spawn "swaync-client" "--toggle-panel"; }
     Mod+Q { spawn "footclient"; }
-{{ if eq .chezmoi.os "freebsd" }}
-    Mod+F { spawn "chrome" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland"; }
-{{ else if eq .chezmoi.os "linux" }}
-    Mod+F { spawn "chromium" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland"; }
-{{ end }}
+    Mod+F { spawn "{{ if eq .chezmoi.os "freebsd"}}chrome{{ else }}chromium{{ end }}" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland"; }
     Mod+R { spawn "fuzzel"; }
     Mod+D { spawn "gnome-clocks"; }
     Mod+E { spawn "nautilus"; }
     Mod+Shift+C { spawn "sh" "-c" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
-
+{{ if eq .chezmoi.os "freebsd" }}
+    XF86AudioRaiseVolume { spawn "sndioctl" "output.level=+0.1"; }
+    XF86AudioLowerVolume { spawn "sndioctl" "output.level=-0.1"; }
+    XF86AudioMute { spawn "sndioctl" "output.mute=!"; }
+{{ else if eq .chezmoi.os "linux" }}
     XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
     XF86AudioMute { spawn "wpctl" "set-mute" "@DEFAULT_SINK@" "toggle"; }
     XF86AudioMicMute { spawn "wpctl" "set-source-mute" "@DEFAULT_SOURCE@" "toggle"; }
+{{ end }}
     XF86AudioPlay { spawn "playerctl" "play-pause"; }
     XF86AudioNext { spawn "playerctl" "next"; }
     XF86AudioPrev { spawn "playerctl" "previous"; }
