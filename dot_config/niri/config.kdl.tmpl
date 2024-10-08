@@ -1,6 +1,6 @@
 {{ if eq .chezmoi.os "freebsd" }}
 // pipewire needs to be started by LY - please make sure to set that up
-spawn-at-startup "swaybg" "-m" "fill" "-i" "/home/tulili/.local/share/bg.png"
+spawn-at-startup "swaybg" "-m" "fill" "-i" "{{ .chezmoi.homeDir }}/.local/share/bg.png"
 // spawn-at-startup "wireplumber"
 {{ else if eq .chezmoi.os "linux" }}
 spawn-at-startup "wpaperd"
