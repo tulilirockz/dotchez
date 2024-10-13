@@ -3,13 +3,11 @@
     "display": {
         "separator": "  ",
         "color": {
-            "keys": "light_red"
         },
     },
     "modules": [
         {
             "type": "title",
-            "key": " ",
             "color": {
                 "user": "light_red",
                 "at": "white",
@@ -17,74 +15,63 @@
             }
         },
         "break",
+        {{ if eq .chezmoi.os "linux" }}
         {
             "type": "os",
-            "key": " ",
             "format": "{pretty-name}"
         },
+        {{ end }}
         {
             "type": "kernel",
-            "key": {{ if eq .chezmoi.os "freebsd"}} " 󰣠" {{ else if eq .chezmoi.os "linux" }} " " {{ end }},
             "format": "{1} {2}"
         },
         {
             "type": "uptime",
-            "key": " 󰅐"
+        },
+        { "type": "loadavg" },
+        "break",
+        { "type": "bios" },
+        { 
+            "type": "chassis",
+        },
+        { "type": "board" },
+        { 
+            "type": "wifi",
         },
         "break",
         {
-            "type": "host",
-            "key": " 󰾰"
-        },
-        {
             "type": "cpu",
-            "key": " 󰻠"
         },
         {
             "type": "gpu",
-            "key": " 󰍛"
         },
         {
             "type": "memory",
-            "key": " "
+        },
+        { "type": "swap" },
+        {
+            "type": "zpool",
         },
         {
             "type": "disk",
-            "key": " "
         },
         {
             "type": "display",
-            "key": " 󰍹"
-        },
-        {
-            "type": "battery",
-            "key": " "
-        },
-        {
-            "type": "gamepad",
-            "key": " 󰖺"
         },
         "break",
         {
-            "type": "de",
-            "key": " 󰕮"
-        },
-        {
             "type": "wm",
-            "key": " "
         },
         {
             "type": "shell",
-            "key": " "
         },
         {
             "type": "terminal",
-            "key": " "
         },
         {
             "type": "packages",
-            "key": " 󰏖"
         },
+        { "type": "vulkan" },
         "break",
         {
             "type": "colors",

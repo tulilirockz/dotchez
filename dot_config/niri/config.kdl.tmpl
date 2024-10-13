@@ -1,7 +1,7 @@
 {{ if eq .chezmoi.os "freebsd" }}
 // pipewire needs to be started by LY - please make sure to set that up
 spawn-at-startup "swaybg" "-m" "fill" "-i" "{{ .chezmoi.homeDir }}/.local/share/bg.png"
-// spawn-at-startup "wireplumber"
+spawn-at-startup "wireplumber"
 {{ else if eq .chezmoi.os "linux" }}
 spawn-at-startup "wpaperd"
 spawn-at-startup "easyeffects" "--gapplication-service"
@@ -19,7 +19,9 @@ spawn-at-startup "foot" "--server"
 spawn-at-startup "wlsunset" "-l" "-23.5" "-L" "-46.5"
 
 environment {
+{{ if eq .chezmoi.os "linux" }}
     DISPLAY ":0"
+{{ end }}
     QT_QPA_PLATFORM "wayland"
     SDL_PLATFORM "wayland"
     MOZ_ENABLE_WAYLAND "1"
