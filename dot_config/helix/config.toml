@@ -1,4 +1,4 @@
-theme = "github_dark_high_contrast"
+theme = "catppuccin_mocha"
 
 [editor]
 bufferline = "always"
@@ -12,13 +12,17 @@ popup-border = "all"
 auto-pairs = false
 auto-format = true
 
+[editor.whitespace]
+render = "all"
+
 [editor.indent-guides]
 character = "╎"
 render = true
 
 [editor.lsp]
-auto-signature-help = false
+auto-signature-help = true
 display-messages = true
+display-inlay-hints = true
 
 [editor.statusline]
 left = ["mode", "spinner", "version-control", "file-name"]

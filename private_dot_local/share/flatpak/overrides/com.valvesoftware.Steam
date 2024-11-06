@@ -1,0 +1,6 @@
+[Context]
+devices=input;dri
+filesystems=~/Games
+
+[Environment]
+PATH=/app/bin:/usr/bin:/usr/sbin:/usr/lib/extensions/vulkan/gamescope/bin

@@ -1,7 +1,7 @@
 README.md
 LICENSE
-
-dconf.ini
+*.ini
+*.bak
 Downloads
 Pictures
 Music

@@ -4,17 +4,13 @@
 [user]
 	email = tulilirockz@outlook.com
 	name = Tulip Blossom
-	signingkey = /home/tulili/.ssh/cberg.pub
+	signingkey = /home/tulili/.ssh/id_ed25519
 [gpg]
 	format = ssh
 [push]
 	autoSetupRemote = true
 [alias]
 	lazy = !lazygit
-	cports = !cat ~/cports.txt
-	cports-fetch = !/usr/bin/fetch -1 -a -q -o /home/tulili/cports.txt https://repo.chimera-linux.org/cports-updates/cports-updates.txt
-	cportsf = !/usr/bin/fetch -1 -a -q -o - https://repo.chimera-linux.org/cports-updates/cports-updates.txt
-	todo = !cat ~/opt/todo-{{ if eq .chezmoi.os "linux"}}c{{ end }}ports.txt
 [column]
 	ui = auto
 [branch]
@@ -37,3 +33,12 @@
     conflictstyle = diff3
 [diff]
     colorMoved = default
+# Delta stuff
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true    # use n and N to move between diff sections
+[merge]
+    conflictstyle = zdiff3

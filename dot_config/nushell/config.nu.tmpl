@@ -3,6 +3,123 @@
 # version = "0.96.1"
 
 
+let catppuccin_mocha_colors = {
+   rosewater: "#f5e0dc"
+   flamingo: "#f2cdcd"
+   pink: "#f5c2e7"
+   mauve: "#cba6f7"
+   red: "#f38ba8"
+   maroon: "#eba0ac"
+   peach: "#fab387"
+   yellow: "#f9e2af"
+   green: "#a6e3a1"
+   teal: "#94e2d5"
+   sky: "#89dceb"
+   sapphire: "#74c7ec"
+   blue: "#89b4fa"
+   lavender: "#b4befe"
+   text: "#cdd6f4"
+   subtext1: "#bac2de"
+   subtext0: "#a6adc8"
+   overlay2: "#9399b2"
+   overlay1: "#7f849c"
+   overlay0: "#6c7086"
+   surface2: "#585b70"
+   surface1: "#45475a"
+   surface0: "#313244"
+   base: "#1e1e2e"
+   mantle: "#181825"
+   crust: "#11111b"
+}
+
+let catppuccin_theme = {
+    separator: $catppuccin_mocha_colors.overlay0
+    leading_trailing_space_bg: { attr: "n" }
+    header: { fg: $catppuccin_mocha_colors.blue attr: "b" }
+    empty: $catppuccin_mocha_colors.lavender
+    bool: $catppuccin_mocha_colors.lavender
+    int: $catppuccin_mocha_colors.peach
+    duration: $catppuccin_mocha_colors.text
+    filesize: {|e|
+        if $e < 1mb {
+            $catppuccin_mocha_colors.green
+        } else if $e < 100mb {
+            $catppuccin_mocha_colors.yellow
+        } else if $e < 500mb {
+            $catppuccin_mocha_colors.peach
+        } else if $e < 800mb {
+            $catppuccin_mocha_colors.maroon
+        } else if $e > 800mb {
+            $catppuccin_mocha_colors.red
+        }
+    }
+    date: {|| (date now) - $in |
+        if $in < 1hr {
+            $catppuccin_mocha_colors.green
+        } else if $in < 1day {
+            $catppuccin_mocha_colors.yellow
+        } else if $in < 3day {
+            $catppuccin_mocha_colors.peach
+        } else if $in < 1wk {
+            $catppuccin_mocha_colors.maroon
+        } else if $in > 1wk {
+            $catppuccin_mocha_colors.red
+        }
+    }
+    range: $catppuccin_mocha_colors.text
+    float: $catppuccin_mocha_colors.text
+    string: $catppuccin_mocha_colors.text
+    nothing: $catppuccin_mocha_colors.text
+    binary: $catppuccin_mocha_colors.text
+    'cell-path': $catppuccin_mocha_colors.text
+    row_index: { fg: $catppuccin_mocha_colors.mauve attr: "b" }
+    record: $catppuccin_mocha_colors.text
+    list: $catppuccin_mocha_colors.text
+    block: $catppuccin_mocha_colors.text
+    hints: $catppuccin_mocha_colors.overlay1
+    search_result: { fg: $catppuccin_mocha_colors.red bg: $catppuccin_mocha_colors.text }
+
+    shape_and: { fg: $catppuccin_mocha_colors.pink attr: "b" }
+    shape_binary: { fg: $catppuccin_mocha_colors.pink attr: "b" }
+    shape_block: { fg: $catppuccin_mocha_colors.blue attr: "b" }
+    shape_bool: $catppuccin_mocha_colors.teal
+    shape_custom: $catppuccin_mocha_colors.green
+    shape_datetime: { fg: $catppuccin_mocha_colors.teal attr: "b" }
+    shape_directory: $catppuccin_mocha_colors.teal
+    shape_external: $catppuccin_mocha_colors.teal
+    shape_externalarg: { fg: $catppuccin_mocha_colors.green attr: "b" }
+    shape_filepath: $catppuccin_mocha_colors.teal
+    shape_flag: { fg: $catppuccin_mocha_colors.blue attr: "b" }
+    shape_float: { fg: $catppuccin_mocha_colors.pink attr: "b" }
+    shape_garbage: { fg: $catppuccin_mocha_colors.text bg: $catppuccin_mocha_colors.red attr: "b" }
+    shape_globpattern: { fg: $catppuccin_mocha_colors.teal attr: "b" }
+    shape_int: { fg: $catppuccin_mocha_colors.pink attr: "b" }
+    shape_internalcall: { fg: $catppuccin_mocha_colors.teal attr: "b" }
+    shape_list: { fg: $catppuccin_mocha_colors.teal attr: "b" }
+    shape_literal: $catppuccin_mocha_colors.blue
+    shape_match_pattern: $catppuccin_mocha_colors.green
+    shape_matching_brackets: { attr: "u" }
+    shape_nothing: $catppuccin_mocha_colors.teal
+    shape_operator: $catppuccin_mocha_colors.peach
+    shape_or: { fg: $catppuccin_mocha_colors.pink attr: "b" }
+    shape_pipe: { fg: $catppuccin_mocha_colors.pink attr: "b" }
+    shape_range: { fg: $catppuccin_mocha_colors.peach attr: "b" }
+    shape_record: { fg: $catppuccin_mocha_colors.teal attr: "b" }
+    shape_redirection: { fg: $catppuccin_mocha_colors.pink attr: "b" }
+    shape_signature: { fg: $catppuccin_mocha_colors.green attr: "b" }
+    shape_string: $catppuccin_mocha_colors.green
+    shape_string_interpolation: { fg: $catppuccin_mocha_colors.teal attr: "b" }
+    shape_table: { fg: $catppuccin_mocha_colors.blue attr: "b" }
+    shape_variable: $catppuccin_mocha_colors.pink
+
+    background: $catppuccin_mocha_colors.base
+    foreground: $catppuccin_mocha_colors.text
+    cursor: $catppuccin_mocha_colors.blue
+}
+
+
+
+
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
 # And here is the theme collection
@@ -226,7 +343,7 @@ $env.config = {
         vi_normal: underscore # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (underscore is the default)
     }
 
-    color_config: $dark_theme # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
+    color_config: $catppuccin_theme # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
     footer_mode: 25 # always, never, number_of_rows, auto
     float_precision: 2 # the precision for displaying floats in tables
     buffer_editor: null # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
@@ -890,15 +1007,14 @@ $env.config = {
         }
     ]
 }
+use std "path add"
+
+path add ("/home/linuxbrew" | path join ".linuxbrew" "bin")
+path add ("/home/linuxbrew" | path join ".linuxbrew" "sbin")
 
 # atuin init nu | save -f ~/.local/share/atuin/init.nu #make sure you created the directory beforehand with `mkdir ~/.local/share/atuin/init.nu`
 source ~/.config/nushell/atuin.nu
 source ~/.config/nushell/zoxide.nu
-{{ if eq .chezmoi.os "freebsd" }}
-source ~/.config/nushell/starship_bsd.nu
-{{ else if eq .chezmoi.os "linux" }}
-source ~/.config/nushell/starship.nu
-{{ end }}
 
 #bind to ctrl-r in emacs, vi_normal and vi_insert modes, add any other bindings you want here too
 $env.config = (
@@ -914,6 +1030,7 @@ $env.config = (
     )
 )
 alias ze = zellij
+alias ya = yazi
 alias yy = yazi
-
-$env.PATH += $":($env.HOME)/.local/bin"
+alias music-dl = yt-dlp --embed-metadata --embed-chapters --embed-thumbnail -f bestaudio -x --audio-format opus
+alias video-dl = yt-dlp --embed-metadata --embed-chapters --embed-thumbnail -f bestvideo

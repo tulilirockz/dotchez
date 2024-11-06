@@ -1,0 +1,10 @@
+[Unit]
+Description=RClone OneDrive mounting service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+KillMode=none
+RestartSec=5
+ExecStart=/usr/bin/rclone mount onedrive: /var/home/tulili/OneDrive --vfs-cache-mode full

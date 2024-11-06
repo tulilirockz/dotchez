@@ -25,7 +25,7 @@ environment {
     QT_QPA_PLATFORM "wayland"
     SDL_PLATFORM "wayland"
     MOZ_ENABLE_WAYLAND "1"
-    SSH_AUTH_SOCK "{{ if eq .chezmoi.os "freebsd" }}/var/run/xdg/tulili{{ else if .chezmoi.os "linux" }}/run/user/1000{{ end }}/keyring/ssh"
+    SSH_AUTH_SOCK "{{ if eq .chezmoi.os "freebsd" }}/var/run/xdg/tulili{{ else if eq .chezmoi.os "linux" }}/run/user/1000{{ end }}/keyring/ssh"
 }
 
 cursor {
@@ -91,11 +91,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot_%Y-%m-%d %H-%M-%S.png"
 binds {
     Mod+Z { spawn "swaync-client" "--toggle-panel"; }
     Mod+Q { spawn "footclient"; }
-{{ if eq .chezmoi.os "freebsd" }}
     Mod+F { spawn "firefox"; }
-{{ else if .chezmoi.os "linux"}}
-    Mod+F { spawn "chromium" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland"; }
-{{ end }}
     Mod+R { spawn "fuzzel"; }
     Mod+D { spawn "gnome-clocks"; }
     Mod+E { spawn "nautilus"; }
