@@ -11,6 +11,7 @@
 	autoSetupRemote = true
 [alias]
 	lazy = !lazygit
+	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
 [column]
 	ui = auto
 [branch]
@@ -34,6 +35,8 @@
 [diff]
     colorMoved = default
 # Delta stuff
+[delta]
+    side-by-side = true
 [core]
     pager = delta
 [interactive]
@@ -42,3 +45,5 @@
     navigate = true    # use n and N to move between diff sections
 [merge]
     conflictstyle = zdiff3
+[pull]
+    rebase = true

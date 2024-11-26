@@ -97,7 +97,14 @@ $env.RUSTUP_HOME = $"($env.XDG_DATA_HOME)/rustup"
 $env.LINUXBREW_HOME = "/home/linuxbrew"
 $env.XDG_DATA_DIRS = $"($env.XDG_DATA_DIRS):($env.LINUXBREW_HOME)/.linuxbrew/share"
 $env.GOPATH = $"($env.XDG_DATA_HOME)/go"
+$env.FZF_DEFAULT_OPTS = "--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 --color=selected-bg:#45475a --multi"
+$env.CCACHE_HOME = $"($env.HOME)/.cache/ccache"
+path add "/home/linuxbrew/.linuxbrew/bin"
+path add "/home/linuxbrew/.linuxbrew/sbin"
 path add ($"($env.CARGO_HOME)" | path join "bin")
 path add ($env.RUSTUP_HOME | path join "toolchains" "nightly-x86_64-unknown-linux-gnu" "bin")
 path add ($env.HOME | path join ".local" "bin")
 path add ($env.GOPATH | path join "bin" )
+path add "/usr/lib64/ccache"
+path add $"($env.HOME)/.deno/bin"
+path add $"($env.HOME)/.bun/bin"
