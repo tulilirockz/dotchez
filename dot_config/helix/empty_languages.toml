@@ -1,23 +1,16 @@
 [language-server.rust-analyzer.config]
 check = {command = "clippy", extraArgs = ["--", "-W", "clippy::all", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-W", "clippy::cargo"]}
 
+[language-server.golangci-lint-lsp.config]
+command = ["golangci-lint-langserver", "run", "--out-format", "json", "--issues-exit-code=1"]
+
+[[language]]
+name = "javascript"
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+
 [[language]]
 name = "typescript"
-language-id = "typescript"
-scope = "source.ts"
-injection-regex = "^(ts|typescript)$"
-file-types = ["ts"]
-shebangs = ["deno"]
-roots = ["deno.json", "deno.jsonc", "package.json"]
-auto-format = true
-language-servers = ["deno-lsp"]
-
-[language-server.deno-lsp]
-command = "deno"
-args = ["lsp"]
-
-[language-server.deno-lsp.config.deno]
-enable = true
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 
 [[language]]
 name = "html"
@@ -32,12 +25,12 @@ language-servers = [ "vscode-css-language-server", "tailwindcss-ls" ]
 [[language]]
 name = "jsx"
 formatter = { command = "prettier" }
-language-servers = [ "deno-lsp", "tailwindcss-ls" ]
+language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
 
 [[language]]
 name = "tsx"
 formatter = { command = "prettier" }
-language-servers = [ "deno-lsp", "tailwindcss-ls" ]
+language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
 
 [[language]]
 name = "svelte"
@@ -52,5 +45,5 @@ language-servers = ["typescript-language-server"]
 
 [[language-server.typescript-language-server.config.plugins]]
 name = "@vue/typescript-plugin"
-location = "/home/tulili/.bun/install/global/node_modules/@vue/language-server"
+location = "/usr/lib/node_modules/npm/node_modules/@vue/language-server"
 languages = ["vue"]

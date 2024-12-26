@@ -1009,26 +1009,20 @@ $env.config = {
 }
 
 # atuin init nu | save -f ~/.local/share/atuin/init.nu #make sure you created the directory beforehand with `mkdir ~/.local/share/atuin/init.nu`
-source ~/.config/nushell/atuin.nu
-source ~/.config/nushell/zoxide.nu
-source ~/.config/nushell/carapace.nu
 
-#bind to ctrl-r in emacs, vi_normal and vi_insert modes, add any other bindings you want here too
-$env.config = (
-    $env.config | upsert keybindings (
-        $env.config.keybindings
-        | append {
-            name: atuin
-            modifier: control
-            keycode: char_r
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: executehostcommand cmd: (_atuin_search_cmd) }
-        }
-    )
-)
 alias ze = zellij
 alias ya = yazi
 alias yy = yazi
 alias music-dl = yt-dlp --embed-metadata --embed-chapters --embed-thumbnail --xattrs -f bestaudio -x --audio-format opus
 alias video-dl = yt-dlp --embed-metadata --embed-chapters --embed-thumbnail --embed-subs --xattrs -f bestvideo 
+alias vm = systemd-vmspawn --console=gui --cpus=2 --ram=6442450944 --network-user-mode --vsock=false --pass-ssh-key=false -i
+alias dev = distrobox enter fedorabox -- /usr/bin/nu
+alias devc = distrobox create fedorabox -Y --no-entry --unshare-process --unshare-devsys --image registry.fedoraproject.org/fedora:rawhide --additional-packages "git git-delta just nu helix meson clang ccache "
+alias g = git
 
+if ($env.CONTAINER_ID? | default "" | str length) == 0 {
+    do -i { /usr/libexec/ublue-motd }
+}
+echo " "
+
+source ~/.config/nushell/zoxide.nu

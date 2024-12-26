@@ -3,7 +3,7 @@
 # version = "0.99.2"
 
 def create_left_prompt [] {
-    let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
+    let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
         '' => '~'
         $relative_pwd => ([~ $relative_pwd] | path join)
@@ -11,7 +11,8 @@ def create_left_prompt [] {
 
     let path_color = (if (is-admin) { ansi light_purple_bold } else { ansi light_blue_bold })
     let separator_color = (if (is-admin) { ansi light_purple_bold } else { ansi light_blue_bold })
-    let path_segment = $"($path_color)($dir)"
+    let distrobox_section = if (($env.CONTAINER_ID? | default "" | str length) != 0) { $"📦($env.CONTAINER_ID)@" } else { "🌐host@" }
+    let path_segment = $"($distrobox_section)($path_color)($dir)"
 
     $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
 }
@@ -108,3 +109,5 @@ path add ($env.GOPATH | path join "bin" )
 path add "/usr/lib64/ccache"
 path add $"($env.HOME)/.deno/bin"
 path add $"($env.HOME)/.bun/bin"
+path add $"($env.HOME)/.cache/.bun/bin"
+path add $"($env.HOME)/bin"

@@ -11,6 +11,10 @@
 	autoSetupRemote = true
 [alias]
 	lazy = !lazygit
+	pr = !gh pr
+	st = status
+	re = rebase
+	rb = rebase
 	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
 [column]
 	ui = auto
@@ -22,19 +26,14 @@
 	gpgsign = true
 [init]
 	defaultBranch = main
-[maintenance]
-	repo = /home/tulili/opt/{{ if eq .chezmoi.os "linux" }}c{{ end }}ports
 [fetch]
 	writeCommitGraph = true
 [credential]
-{{ if eq .chezmoi.os "linux" }}
 	helper = /usr{{ if eq .chezmoi.os "freebsd"}}/local{{ end }}/libexec/git-core/git-credential-libsecret
-{{ end }}
 [merge]
     conflictstyle = diff3
 [diff]
     colorMoved = default
-# Delta stuff
 [delta]
     side-by-side = true
 [core]
@@ -42,8 +41,12 @@
 [interactive]
     diffFilter = delta --color-only
 [delta]
-    navigate = true    # use n and N to move between diff sections
+    navigate = true
 [merge]
     conflictstyle = zdiff3
 [pull]
     rebase = true
+[clean]
+    requireForce = false
+[help]
+    autocorrect = 5

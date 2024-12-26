@@ -257,9 +257,9 @@ default_shell "/home/linuxbrew/.linuxbrew/bin/nu"
 // default_cwd "/tmp"
  
 // The name of the default layout to load on startup
-// Default: "default"
+// Default: "default" "compact"
 // 
-default_layout "compact"
+default_layout "default"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)

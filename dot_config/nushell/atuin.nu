@@ -1,3 +1,7 @@
+if ($env.CONTAINER_ID? | default "" | str length) != 0 {
+    return
+}
+
 # Source this in your ~/.config/nushell/config.nu
 $env.ATUIN_SESSION = (atuin uuid)
 hide-env -i ATUIN_HISTORY_ID
