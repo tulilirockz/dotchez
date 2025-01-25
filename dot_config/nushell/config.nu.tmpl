@@ -1015,13 +1015,27 @@ alias ya = yazi
 alias yy = yazi
 alias music-dl = yt-dlp --embed-metadata --embed-chapters --embed-thumbnail --xattrs -f bestaudio -x --audio-format opus
 alias video-dl = yt-dlp --embed-metadata --embed-chapters --embed-thumbnail --embed-subs --xattrs -f bestvideo 
-alias vm = systemd-vmspawn --console=gui --cpus=2 --ram=6442450944 --network-user-mode --vsock=false --pass-ssh-key=false -i
+# alias vm = systemd-vmspawn --console=gui --cpus=2 --ram=6442450944 --network-user-mode --vsock=false --pass-ssh-key=false -i
 alias dev = distrobox enter fedorabox -- /usr/bin/nu
 alias devc = distrobox create fedorabox -Y --no-entry --unshare-process --unshare-devsys --image registry.fedoraproject.org/fedora:rawhide --additional-packages "git git-delta just nu helix meson clang ccache "
 alias g = git
+# alias flatpak-builder = flatpak run org.flatpak.Builder
+alias flatpak-lint = flatpak run --command=flatpak-builder-lint org.flatpak.Builder
+alias qemu = flatpak run $"--command=qemu-system-(arch)" org.virt_manager.virt-manager
+alias vm-slow = qemu -enable-kvm -M q35 -smp 1 -m 4G -net nic,model=virtio -net user,hostfwd=tcp::2222-:22 -display gtk -boot d -hda
+alias vm = qemu -enable-kvm -M q35 -smp 2 -m 8G -cpu host -net nic,model=virtio -net user,hostfwd=tcp::2222-:22 -device virtio-vga-gl,hostmem=8G,blob=true,venus=true -vga none -display gtk,gl=on,show-cursor=on -usb -device usb-tablet -object memory-backend-memfd,id=mem1,size=8G -machine memory-backend=mem1 -hda
+alias flatpak-check = flatpak run org.flathub.flatpak-external-data-checker
+
+def --env flatpak-build [manifest: string] {
+    flatpak-builder $"($env.XDG_CACHE_HOME)/flatpak-builder/($manifest | path basename)/build-dir" --state-dir=$"($env.XDG_CACHE_HOME)/flatpak-builder/($manifest | path basename)/flatpak-builder" --user --ccache --force-clean --install --disable-rofiles-fuse $manifest
+}
+def --env flatpak-iterate [manifest: string] {
+    flatpak-builder --run $"($env.XDG_CACHE_HOME)/flatpak-builder/($manifest | path basename)/build-dir" --ccache $manifest /bin/bash
+}
 
 if ($env.CONTAINER_ID? | default "" | str length) == 0 {
-    do -i { /usr/libexec/ublue-motd }
+    do { /usr/libexec/ublue-motd }
+    alias sudo = pkexec --keep-cwd
 }
 echo " "
 

@@ -4,14 +4,17 @@
 [user]
 	email = tulilirockz@outlook.com
 	name = Tulip Blossom
-	signingkey = /home/tulili/.ssh/id_ed25519
+	signingkey = {{ .chezmoi.homeDir }}/.ssh/id_ed25519
 [gpg]
 	format = ssh
 [push]
 	autoSetupRemote = true
 [alias]
 	lazy = !lazygit
-	pr = !gh pr
+	fa = fetch --all
+	nb = switch upstream/main -C
+	ru = rebase upstream/main
+	pr = !gh pr create --fill-verbose
 	st = status
 	re = rebase
 	rb = rebase

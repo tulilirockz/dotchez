@@ -2,6 +2,9 @@
 default:
     @just --choose
 
+dash:
+    gh extension install dlvhdr/gh-dash
+
 force-virgl:
     cat <<EOF > /usr/local/bin/qemu
     #!/usr/bin/env bash
