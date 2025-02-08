@@ -32,6 +32,7 @@ let catppuccin_mocha_colors = {
    crust: "#11111b"
 }
 
+# https://github.com/nushell/nu_scripts/tree/main/themes
 let catppuccin_theme = {
     separator: $catppuccin_mocha_colors.overlay0
     leading_trailing_space_bg: { attr: "n" }
@@ -118,151 +119,6 @@ let catppuccin_theme = {
 }
 
 
-
-
-# For more information on defining custom themes, see
-# https://www.nushell.sh/book/coloring_and_theming.html
-# And here is the theme collection
-# https://github.com/nushell/nu_scripts/tree/main/themes
-let dark_theme = {
-    # color for nushell primitives
-    separator: white
-    leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
-    header: green_bold
-    empty: blue
-    # Closures can be used to choose colors for specific values.
-    # The value (in this case, a bool) is piped into the closure.
-    # eg) {|| if $in { 'light_cyan' } else { 'light_gray' } }
-    bool: light_cyan
-    int: white
-    filesize: cyan
-    duration: white
-    date: purple
-    range: white
-    float: white
-    string: white
-    nothing: white
-    binary: white
-    cell-path: white
-    row_index: green_bold
-    record: white
-    list: white
-    block: white
-    hints: dark_gray
-    search_result: { bg: red fg: white }
-    shape_and: purple_bold
-    shape_binary: purple_bold
-    shape_block: blue_bold
-    shape_bool: light_cyan
-    shape_closure: green_bold
-    shape_custom: green
-    shape_datetime: cyan_bold
-    shape_directory: cyan
-    shape_external: cyan
-    shape_externalarg: green_bold
-    shape_external_resolved: light_yellow_bold
-    shape_filepath: cyan
-    shape_flag: blue_bold
-    shape_float: purple_bold
-    # shapes are used to change the cli syntax highlighting
-    shape_garbage: { fg: white bg: red attr: b }
-    shape_glob_interpolation: cyan_bold
-    shape_globpattern: cyan_bold
-    shape_int: purple_bold
-    shape_internalcall: cyan_bold
-    shape_keyword: cyan_bold
-    shape_list: cyan_bold
-    shape_literal: blue
-    shape_match_pattern: green
-    shape_matching_brackets: { attr: u }
-    shape_nothing: light_cyan
-    shape_operator: yellow
-    shape_or: purple_bold
-    shape_pipe: purple_bold
-    shape_range: yellow_bold
-    shape_record: cyan_bold
-    shape_redirection: purple_bold
-    shape_signature: green_bold
-    shape_string: green
-    shape_string_interpolation: cyan_bold
-    shape_table: blue_bold
-    shape_variable: purple
-    shape_vardecl: purple
-    shape_raw_string: light_purple
-}
-
-let light_theme = {
-    # color for nushell primitives
-    separator: dark_gray
-    leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
-    header: green_bold
-    empty: blue
-    # Closures can be used to choose colors for specific values.
-    # The value (in this case, a bool) is piped into the closure.
-    # eg) {|| if $in { 'dark_cyan' } else { 'dark_gray' } }
-    bool: dark_cyan
-    int: dark_gray
-    filesize: cyan_bold
-    duration: dark_gray
-    date: purple
-    range: dark_gray
-    float: dark_gray
-    string: dark_gray
-    nothing: dark_gray
-    binary: dark_gray
-    cell-path: dark_gray
-    row_index: green_bold
-    record: dark_gray
-    list: dark_gray
-    block: dark_gray
-    hints: dark_gray
-    search_result: { fg: white bg: red }
-    shape_and: purple_bold
-    shape_binary: purple_bold
-    shape_block: blue_bold
-    shape_bool: light_cyan
-    shape_closure: green_bold
-    shape_custom: green
-    shape_datetime: cyan_bold
-    shape_directory: cyan
-    shape_external: cyan
-    shape_externalarg: green_bold
-    shape_external_resolved: light_purple_bold
-    shape_filepath: cyan
-    shape_flag: blue_bold
-    shape_float: purple_bold
-    # shapes are used to change the cli syntax highlighting
-    shape_garbage: { fg: white bg: red attr: b }
-    shape_glob_interpolation: cyan_bold
-    shape_globpattern: cyan_bold
-    shape_int: purple_bold
-    shape_internalcall: cyan_bold
-    shape_keyword: cyan_bold
-    shape_list: cyan_bold
-    shape_literal: blue
-    shape_match_pattern: green
-    shape_matching_brackets: { attr: u }
-    shape_nothing: light_cyan
-    shape_operator: yellow
-    shape_or: purple_bold
-    shape_pipe: purple_bold
-    shape_range: yellow_bold
-    shape_record: cyan_bold
-    shape_redirection: purple_bold
-    shape_signature: green_bold
-    shape_string: green
-    shape_string_interpolation: cyan_bold
-    shape_table: blue_bold
-    shape_variable: purple
-    shape_vardecl: purple
-    shape_raw_string: light_purple
-}
-
-# External completer example
-# let carapace_completer = {|spans|
-#     carapace $spans.0 nushell ...$spans | from json
-# }
-
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
     show_banner: false # true or false to enable or disable the welcome banner at startup
@@ -300,18 +156,6 @@ $env.config = {
         # table: '%m/%d/%y %I:%M:%S%p'          # generally shows up in tabular outputs such as ls. commenting this out will change it to the default human readable datetime format
     }
 
-    explore: {
-        status_bar_background: { fg: "#1D1F21", bg: "#C4C9C6" },
-        command_bar_text: { fg: "#C4C9C6" },
-        highlight: { fg: "black", bg: "yellow" },
-        status: {
-            error: { fg: "white", bg: "red" },
-            warn: {}
-            info: {}
-        },
-        selected_cell: { bg: light_blue },
-    }
-
     history: {
         max_size: 100_000 # Session has to be reloaded for this to take effect
         sync_on_enter: true # Enable to share history between multiple sessions, else you have to close the session to write history to file
@@ -332,10 +176,6 @@ $env.config = {
         use_ls_colors: true # set this to true to enable file/path/directory completions using LS_COLORS
     }
 
-    filesize: {
-        metric: false # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
-        format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, auto
-    }
 
     cursor_shape: {
         emacs: line # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (line is the default)
@@ -1016,18 +856,22 @@ alias yy = yazi
 alias music-dl = yt-dlp --embed-metadata --embed-chapters --embed-thumbnail --xattrs -f bestaudio -x --audio-format opus
 alias video-dl = yt-dlp --embed-metadata --embed-chapters --embed-thumbnail --embed-subs --xattrs -f bestvideo 
 # alias vm = systemd-vmspawn --console=gui --cpus=2 --ram=6442450944 --network-user-mode --vsock=false --pass-ssh-key=false -i
+alias cen = distrobox enter centosbox
+alias cenc = distrobox create centosbox -Y --no-entry --unshare-process --unshare-devsys --image quay.io/centos/centos:stream10 --additional-packages "git rpmdevtools epel-release"
 alias dev = distrobox enter fedorabox -- /usr/bin/nu
-alias devc = distrobox create fedorabox -Y --no-entry --unshare-process --unshare-devsys --image registry.fedoraproject.org/fedora:rawhide --additional-packages "git git-delta just nu helix meson clang ccache "
+alias devc = distrobox create fedorabox -Y --no-entry --unshare-process --unshare-devsys --image registry.fedoraproject.org/fedora:rawhide --additional-packages "git git-delta just nu helix meson clang ccache rpmdevtools rpkg"
+alias devd = distrobox rm -f fedorabox
 alias g = git
-# alias flatpak-builder = flatpak run org.flatpak.Builder
+alias flatpak-builder = flatpak run org.flatpak.Builder
 alias flatpak-lint = flatpak run --command=flatpak-builder-lint org.flatpak.Builder
 alias qemu = flatpak run $"--command=qemu-system-(arch)" org.virt_manager.virt-manager
-alias vm-slow = qemu -enable-kvm -M q35 -smp 1 -m 4G -net nic,model=virtio -net user,hostfwd=tcp::2222-:22 -display gtk -boot d -hda
-alias vm = qemu -enable-kvm -M q35 -smp 2 -m 8G -cpu host -net nic,model=virtio -net user,hostfwd=tcp::2222-:22 -device virtio-vga-gl,hostmem=8G,blob=true,venus=true -vga none -display gtk,gl=on,show-cursor=on -usb -device usb-tablet -object memory-backend-memfd,id=mem1,size=8G -machine memory-backend=mem1 -hda
+alias vm-slow = qemu -enable-kvm -M q35 -smp 1 -m 4G -net nic,model=virtio -net user,hostfwd=tcp::2222-:22 -display gtk -boot d
+alias vm = qemu -enable-kvm -M q35 -smp 2 -m 8G -cpu host -net nic,model=virtio -net user,hostfwd=tcp::2222-:22 -device virtio-vga-gl,hostmem=8G,blob=true,venus=true -vga none -display gtk,gl=on,show-cursor=on -usb -device usb-tablet -object memory-backend-memfd,id=mem1,size=8G -machine memory-backend=mem1
+
 alias flatpak-check = flatpak run org.flathub.flatpak-external-data-checker
 
-def --env flatpak-build [manifest: string] {
-    flatpak-builder $"($env.XDG_CACHE_HOME)/flatpak-builder/($manifest | path basename)/build-dir" --state-dir=$"($env.XDG_CACHE_HOME)/flatpak-builder/($manifest | path basename)/flatpak-builder" --user --ccache --force-clean --install --disable-rofiles-fuse $manifest
+def --env flatpak-build [manifest: string, ...rest] {
+    flatpak-builder $"($env.XDG_CACHE_HOME)/flatpak-builder/($manifest | path basename)/build-dir" --state-dir=$"($env.XDG_CACHE_HOME)/flatpak-builder/($manifest | path basename)/flatpak-builder" --user --ccache --force-clean --install --disable-rofiles-fuse $manifest ...$rest
 }
 def --env flatpak-iterate [manifest: string] {
     flatpak-builder --run $"($env.XDG_CACHE_HOME)/flatpak-builder/($manifest | path basename)/build-dir" --ccache $manifest /bin/bash
