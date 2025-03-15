@@ -2,7 +2,7 @@
 	untrackedcache = true
 	fsmonitor = true
 [user]
-	email = tulilirockz@outlook.com
+	email = tulilirockz@proton.me
 	name = Tulip Blossom
 	signingkey = {{ .chezmoi.homeDir }}/.ssh/id_ed25519
 [gpg]
@@ -11,6 +11,11 @@
 	autoSetupRemote = true
 [alias]
 	lazy = !lazygit
+	up = remote rename origin upstream
+	upstream = up
+	# fixme = grep "#\ *[A-Z]*:"
+	# fix = fixme
+	shallow = clone --depth 1 
 	fa = fetch --all
 	nb = switch upstream/main -C
 	ru = rebase upstream/main

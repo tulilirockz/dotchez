@@ -50,9 +50,4 @@ languages = ["vue"]
 
 [[language]]
 name = "python"
-language-servers = [ "ruff" ]
-auto-format = true
-
-[language-server.ruff]
-command = "ruff"
-args = ["server"]
+language-servers = ["basedpyright"]

@@ -1,11 +1,9 @@
 #!/bin/sh
 
-mkdir -p $HOME/media \
+mkdir -p \
   $HOME/OneDrive \
   $HOME/Desktop \
   $HOME/opt \
-  $HOME/media \
   $HOME/tmp \
   $HOME/Downloads \
-  $HOME/media \
-  $HOME/{{ if eq .chezmoi.os "freebsd" }}jail{{ else if eq .chezmoi.os "linux" }}machines{{ end }}
+  $HOME/src
