@@ -1,16 +1,16 @@
-[language-server.rust-analyzer.config]
-check = {command = "clippy", extraArgs = ["--", "-W", "clippy::all", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-W", "clippy::cargo"]}
+# [language-server.rust-analyzer.config]
+# check = {command = "clippy", extraArgs = ["--", "-W", "clippy::all", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-W", "clippy::cargo"]}
 
-[language-server.golangci-lint-lsp.config]
-command = ["golangci-lint-langserver", "run", "--out-format", "json", "--issues-exit-code=1"]
+# [language-server.golangci-lint-lsp.config]
+# command = ["golangci-lint-langserver", "run", "--out-format", "json", "--issues-exit-code=1"]
 
-[[language]]
-name = "javascript"
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+# [[language]]
+# name = "javascript"
+# formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 
-[[language]]
-name = "typescript"
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+# [[language]]
+# name = "typescript"
+# formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 
 [[language]]
 name = "html"
@@ -32,22 +32,22 @@ name = "tsx"
 formatter = { command = "prettier" }
 language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
 
-[[language]]
-name = "svelte"
-formatter = { command = "prettier" }
-language-servers = [ "svelteserver", "tailwindcss-ls" ]
+# [[language]]
+# name = "svelte"
+# formatter = { command = "prettier" }
+# language-servers = [ "svelteserver", "tailwindcss-ls" ]
 
 [[language]]
 name = "vue"
 auto-format = true
 formatter = { command = "prettier", args = ["--parser", "vue"] }
-language-servers = ["typescript-language-server"]
+language-servers = ["vuels", "tailwindcss-ls", "emmet-ls"]
 
-[[language-server.typescript-language-server.config.plugins]]
-name = "@vue/typescript-plugin"
-location = "/usr/lib/node_modules/npm/node_modules/@vue/language-server"
-languages = ["vue"]
+# [[language-server.typescript-language-server.config.plugins]]
+# name = "@vue/typescript-plugin"
+# location = "/usr/lib/node_modules/npm/node_modules/@vue/language-server"
+# languages = ["vue"]
 
-[[language]]
-name = "python"
-language-servers = ["basedpyright"]
+# [[language]]
+# name = "python"
+# language-servers = ["basedpyright"]

@@ -129,16 +129,19 @@ alias wold = distrobox rm -f wolfibox
 alias cen = distrobox enter centosbox
 alias cenc = distrobox create centosbox -Y --no-entry --unshare-process --unshare-devsys --image quay.io/centos/centos:10 --additional-packages "git rpmdevtools epel-release"
 alias cend = distrobox rm -f centosbox
-alias dev = distrobox enter fedorabox -- /usr/bin/nu
-alias devc = distrobox create fedorabox -Y --no-entry --unshare-process --unshare-devsys --image registry.fedoraproject.org/fedora:rawhide --additional-packages "git git-delta zoxide just nu helix meson clang ccache rpmdevtools rpkg"
-alias devd = distrobox rm -f fedorabox
+alias dev = distrobox enter buildbox -- /usr/bin/nu
+alias devc = distrobox create buildbox -Y --no-entry --unshare-process --unshare-devsys --image registry.fedoraproject.org/fedora:latest --additional-packages "git git-delta zoxide just nu helix meson clang ccache rpmdevtools rpkg"
+alias devd = distrobox rm -f buildbox
+# alias dev = distrobox enter fedorabox -- /usr/bin/nu
+# alias devc = distrobox create fedorabox -Y --no-entry --unshare-process --unshare-devsys --image registry.fedoraproject.org/fedora:rawhide --additional-packages "git git-delta zoxide just nu helix meson clang ccache rpmdevtools rpkg"
+# alias devd = distrobox rm -f fedorabox
 alias g = git
-alias flatpak-builder = flatpak run org.flatpak.Builder
-alias flatpak-lint = flatpak run --command=flatpak-builder-lint org.flatpak.Builder
 alias qemu = flatpak run $"--command=qemu-system-(arch)" org.virt_manager.virt-manager
 alias vm-slow = qemu -enable-kvm -M q35 -smp 1 -m 4G -net nic,model=virtio -net user,hostfwd=tcp::2222-:22 -display gtk -boot d
-alias vm = qemu -enable-kvm -M q35 -smp 2 -m 8G -cpu host -net nic,model=virtio -net user,hostfwd=tcp::2222-:22 -device virtio-vga-gl,hostmem=8G,blob=true,venus=true -vga none -display gtk,gl=on,show-cursor=on -usb -device usb-tablet -object memory-backend-memfd,id=mem1,size=8G -machine memory-backend=mem1
+alias vm = qemu -enable-kvm -M q35 -smp 2 -m 8G -cpu host -net nic,model=virtio -net user,hostfwd=tcp::2222-:22 -device virtio-vga-gl,hostmem=8G,blob=true,venus=true -vga none -display gtk,gl=on,show-cursor=on -usb -device usb-tablet -object memory-backend-memfd,id=mem1,size=8G -machine memory-backend=mem1 -drive $"if=pflash,format=raw,file=/app/lib/extensions/Qemu/share/qemu/edk2-(arch).fd" -drive $"if=pflash,format=raw,readonly=on,file=/app/lib/extensions/Qemu/share/qemu/edk2-(arch)-code.fd"
 
+alias flatpak-builder = flatpak run org.flatpak.Builder
+alias flatpak-lint = flatpak run --command=flatpak-builder-lint org.flatpak.Builder
 alias flatpak-check = flatpak run org.flathub.flatpak-external-data-checker
 
 def --env flatpak-build [manifest: string, ...rest] {

@@ -1,3 +1,4 @@
+brew "age"
 brew "helix"
 brew "lazygit"
 brew "zellij"

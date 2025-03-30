@@ -2,3 +2,5 @@
 !.github/
 !.gitignore
 !.gitattributes
+node_modules
+**/target/*
