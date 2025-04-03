@@ -20,6 +20,7 @@
 	# fixme = grep "#\ *[A-Z]*:"
 	# fix = fixme
 	shallow = clone --depth 1 
+	fedpkg = !git clone https://src.fedoraproject.org/rpms/$1.git
 	fa = fetch --all
 	nb = switch upstream/main -C
 	ru = rebase upstream/main

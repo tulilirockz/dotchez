@@ -9,6 +9,7 @@ def create_right_prompt [] {
     } else {
         $"🌐(hostname)"
     })
+    
     $"(ansi light_blue_bold)(id -u):(id -g)@($distrobox_section)"
 }
 
@@ -38,9 +39,11 @@ path add $"($env.LINUXBREW_HOME)/bin"
 path add $"($env.LINUXBREW_HOME)/sbin"
 path add ($"($env.CARGO_HOME)" | path join "bin")
 path add ($env.RUSTUP_HOME | path join "toolchains" "nightly-x86_64-unknown-linux-gnu" "bin")
+path add "/home/linuxbrew/.linuxbrew/opt/rustup/bin"
 path add ($env.HOME | path join ".local" "bin")
 path add ($env.GOPATH | path join "bin" )
 path add "/usr/lib64/ccache"
+path add $"($env.HOME)/.rbenv/shims"
 path add $"($env.HOME)/.deno/bin"
 path add $"($env.HOME)/.bun/bin"
 path add $"($env.HOME)/.cache/.bun/bin"
