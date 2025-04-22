@@ -129,6 +129,7 @@ alias wold = distrobox rm -f wolfibox
 alias cen = distrobox enter centosbox
 alias cenc = distrobox create centosbox -Y --no-entry --unshare-process --unshare-devsys --image quay.io/centos/centos:10 --additional-packages "git rpmdevtools epel-release"
 alias cend = distrobox rm -f centosbox
+
 alias dev = distrobox enter buildbox -- /usr/bin/nu
 alias devc = distrobox create buildbox -Y --no-entry --unshare-process --unshare-devsys --image registry.fedoraproject.org/fedora:latest --additional-packages "git git-delta zoxide just nu helix meson clang ccache rpmdevtools rpkg"
 alias devd = distrobox rm -f buildbox

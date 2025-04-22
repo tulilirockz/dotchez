@@ -1,5 +1,5 @@
-# [language-server.rust-analyzer.config]
-# check = {command = "clippy", extraArgs = ["--", "-W", "clippy::all", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-W", "clippy::cargo"]}
+[language-server.rust-analyzer.config]
+check = {command = "clippy", extraArgs = ["--", "-W", "clippy::all", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-W", "clippy::cargo"]}
 
 # [language-server.golangci-lint-lsp.config]
 # command = ["golangci-lint-langserver", "run", "--out-format", "json", "--issues-exit-code=1"]
@@ -48,6 +48,6 @@ language-servers = ["vuels", "tailwindcss-ls", "emmet-ls"]
 # location = "/usr/lib/node_modules/npm/node_modules/@vue/language-server"
 # languages = ["vue"]
 
-# [[language]]
-# name = "python"
-# language-servers = ["basedpyright"]
+[[language]]
+name = "python"
+language-servers = ["basedpyright"]
