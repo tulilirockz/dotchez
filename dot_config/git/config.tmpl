@@ -28,7 +28,7 @@
 	st = status
 	wt = worktree
 	work = worktree
-	nt = "!f() { git worktree add ../$(dirname $PWD)-\"$1^\" }; f"
+    nt = "!f() { git worktree add ../$(basename $PWD)-$1 && echo $(realpath ../$(basename $PWD)-$1); }; f"
 	re = rebase
 	rb = rebase
 	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
