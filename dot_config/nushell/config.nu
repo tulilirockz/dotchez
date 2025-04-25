@@ -146,7 +146,7 @@ alias flatpak-lint = flatpak run --command=flatpak-builder-lint org.flatpak.Buil
 alias flatpak-check = flatpak run org.flathub.flatpak-external-data-checker
 
 def --env flatpak-build [manifest: string, ...rest] {
-    flatpak-builder $"($env.XDG_CACHE_HOME)/flatpak-builder/($manifest | path basename)/build-dir" --state-dir=$"($env.XDG_CACHE_HOME)/flatpak-builder/($manifest | path basename)/flatpak-builder" --user --ccache --force-clean --install --disable-rofiles-fuse $manifest ...$rest
+    flatpak-builder --default-branch=stable $"($env.XDG_CACHE_HOME)/flatpak-builder/($manifest | path basename)/build-dir" --state-dir=$"($env.XDG_CACHE_HOME)/flatpak-builder/($manifest | path basename)/flatpak-builder" --user --ccache --force-clean --install --disable-rofiles-fuse $manifest ...$rest
 }
 def --env flatpak-iterate [manifest: string] {
     flatpak-builder --run $"($env.XDG_CACHE_HOME)/flatpak-builder/($manifest | path basename)/build-dir" --ccache $manifest /bin/bash

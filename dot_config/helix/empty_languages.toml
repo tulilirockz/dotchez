@@ -43,10 +43,10 @@ auto-format = true
 formatter = { command = "prettier", args = ["--parser", "vue"] }
 language-servers = ["vuels", "tailwindcss-ls", "emmet-ls"]
 
-# [[language-server.typescript-language-server.config.plugins]]
-# name = "@vue/typescript-plugin"
-# location = "/usr/lib/node_modules/npm/node_modules/@vue/language-server"
-# languages = ["vue"]
+[[language-server.typescript-language-server.config.plugins]]
+name = "@vue/typescript-plugin"
+location = "/usr/lib/node_modules/npm/node_modules/@vue/language-server"
+languages = ["vue"]
 
 [[language]]
 name = "python"
