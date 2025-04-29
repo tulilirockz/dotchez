@@ -1,3 +1,23 @@
+[alias]
+	lazy = !lazygit
+	dash = !gh dash
+	up = upstream 
+	upstream = remote rename origin upstream
+	# fixme = grep "#\ *[A-Z]*:"
+	# fix = fixme
+	shallow = clone --depth 1 
+	fedpkg = !git clone https://src.fedoraproject.org/rpms/$1.git
+	fa = fetch --all
+	nb = switch upstream/main -C
+	ru = rebase upstream/main
+	pr = !gh pr create --fill-first -e
+	st = status
+	wt = worktree
+	work = worktree
+	nt = "!f() { git worktree add ../$(basename $PWD)-$1 && echo $(realpath ../$(basename $PWD)-$1); }; f"
+	re = rebase
+	rb = rebase
+	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
 [core]
 	untrackedcache = true
 	fsmonitor = true
@@ -13,25 +33,6 @@
 	gpgsign = true
 [push]
 	autoSetupRemote = true
-[alias]
-	lazy = !lazygit
-	up = remote rename origin upstream
-	upstream = up
-	# fixme = grep "#\ *[A-Z]*:"
-	# fix = fixme
-	shallow = clone --depth 1 
-	fedpkg = !git clone https://src.fedoraproject.org/rpms/$1.git
-	fa = fetch --all
-	nb = switch upstream/main -C
-	ru = rebase upstream/main
-	pr = !gh pr create --fill-first -e
-	st = status
-	wt = worktree
-	work = worktree
-    nt = "!f() { git worktree add ../$(basename $PWD)-$1 && echo $(realpath ../$(basename $PWD)-$1); }; f"
-	re = rebase
-	rb = rebase
-	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
 [column]
 	ui = auto
 [branch]
@@ -63,4 +64,4 @@
 [clean]
     requireForce = false
 [help]
-    autocorrect = 5
+    autocorrect = 2

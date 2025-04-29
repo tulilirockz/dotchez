@@ -124,7 +124,7 @@ alias music-dl = yt-dlp --embed-metadata --embed-chapters --embed-thumbnail --xa
 alias video-dl = yt-dlp --embed-metadata --embed-chapters --embed-thumbnail --embed-subs --xattrs -f bestvideo 
 # alias vm = systemd-vmspawn --console=gui --cpus=2 --ram=6442450944 --network-user-mode --vsock=false --pass-ssh-key=false -i
 alias wol = distrobox enter wolfibox
-alias wolc = distrobox create wolfibox -Y --no-entry --unshare-process --unshare-devsys --image cgr.dev/chainguard/wolfi-base
+alias wolc = distrobox create wolfibox -Y --no-entry --unshare-process --unshare-devsys --image cgr.dev/chainguard/wolfi-base --additional-packages "git nushell zoxide uutils"
 alias wold = distrobox rm -f wolfibox
 alias cen = distrobox enter centosbox
 alias cenc = distrobox create centosbox -Y --no-entry --unshare-process --unshare-devsys --image quay.io/centos/centos:10 --additional-packages "git rpmdevtools epel-release"
