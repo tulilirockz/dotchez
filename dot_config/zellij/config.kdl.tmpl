@@ -249,9 +249,12 @@ default_mode "locked"
  
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
-// 
+//
+{{ if eq .chezmoi.os "darwin" }} 
+default_shell "/opt/homebrew/bin/nu"
+{{ else if eq .chezmoi.os "linux" }}
 default_shell "/home/linuxbrew/.linuxbrew/bin/nu"
- 
+{{ end }}
 // Choose the path to override cwd that zellij will use for opening new panes
 // 
 // default_cwd "/tmp"

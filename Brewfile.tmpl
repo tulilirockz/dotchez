@@ -1,3 +1,11 @@
+{{ if eq .chezmoi.os "darwin"}}
+cask "eloston-chromium"
+cask "bitwarden"
+cask "ghostty"
+cask "utm"
+cask "podman-desktop"
+brew "podman"
+{{ end }}
 brew "helix"
 brew "btop"
 brew "lazygit"

@@ -7,3 +7,8 @@ mkdir -p \
   $HOME/tmp \
   $HOME/Downloads \
   $HOME/src
+
+{{ if eq .chezmoi.os "darwin" }}
+ln -sf $HOME/.config/nushell/config.nu "$HOME/Library/Application Support/nushell/config.nu"
+ln -sf $HOME/.config/nushell/env.nu "$HOME/Library/Application Support/nushell/env.nu"
+{{ end }}
